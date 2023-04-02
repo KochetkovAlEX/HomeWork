@@ -88,4 +88,4 @@ import random
 # book1.show_info()
 # book1.getName()
 # book1.getCost()
-
+# book1.getCost()
