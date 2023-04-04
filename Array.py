@@ -38,13 +38,11 @@ class Array():
 		else:
 			for i in range(len(self.list)):
 				if i==index and self.list[i]=="":
-					self.list.insert(index,num)
-					self.list.pop(index+1)
+					self.list[index]=num
 					self.__count+=1
 					break
 				if  i==index and self.list[i]!="":
 					raise Exception("Данная позиция занята")
-
 
 	#удаление
 	def back_pop(self):
