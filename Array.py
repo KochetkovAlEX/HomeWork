@@ -21,7 +21,6 @@ class Array():
 			raise IndexError("Элементы в списке закончились")
 		else:
 			self.list.insert(0,num)
-			self.list.pop(self.size)
 			self.__count+=1
 
 	def back_push(self, num):
@@ -38,8 +37,7 @@ class Array():
 		else:
 			for i in range(len(self.list)):
 				if i==index and self.list[i]=="":
-					self.list.insert(index,num)
-					self.list.pop(index+1)
+					self.list[index]=num
 					self.__count+=1
 					break
 				if  i==index and self.list[i]!="":
@@ -60,8 +58,9 @@ class Array():
 
 	def index_pop(self,index):
 		if self.__count==0: raise IndexError("Список пуст")
-		elif index<self.size:
-			self.list=self.list[0:index]+self.list[index+1:]
+		if index<self.size:
+			for i in range(index,self.size-1):
+				self.list[i]=self.list[i+1]
 			self.__count -= 1
 		else:
 			raise Exception("Введите корректный индекс")
@@ -70,13 +69,13 @@ class Array():
 if __name__=="__main__":
 	lst1=Array(4)
 	try:
-		lst1.start_push(1)
-		lst1.start_push(2)
-		lst1.back_push(3)
-		lst1.back_push(4)
-		lst1.print()
-		lst1.start_pop()
+		for i in range(4):
+			lst1.back_push(i)
 		lst1.show()
-		lst1.show_size()
+		lst1.index_pop(1)
+		lst1.show()
+		lst1.print()
+		lst1.show()
 	except Exception as er:
 		print(er)
+
